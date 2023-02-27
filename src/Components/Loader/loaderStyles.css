@@ -1,0 +1,32 @@
+.loader {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    animation: breathe 1s ease-in infinite;
+    border-radius: 50%;
+    color: rgb(128, 128, 128);
+    z-index: 10000;
+    background-color: transparent;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes breathe {
+    0% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
