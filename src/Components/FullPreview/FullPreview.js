@@ -50,7 +50,7 @@ const FullPreview = ({
     );
 
     if (res.data) {
-      setTags([...tags, ...res.data.result]);
+      setTags([...tags, ...res.data.result.slice(0,8)]);
     }
   }
 
@@ -152,7 +152,7 @@ const FullPreview = ({
           </div>
           <div className={classes.relatedTags}>Related tags</div>
           <div className={classes.wrapper}>
-            {tags.slice(0, 7).map((tag) => {
+            {tags.map((tag) => {
               return (
                 <Tag
                   tag={tag}
