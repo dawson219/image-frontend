@@ -64,5 +64,5 @@ export const bannerStyles = createUseStyles({
         width: "100%",
         textAlign: "left",
         margin: "0.5rem 1.5rem"
-    }
+    },
 })

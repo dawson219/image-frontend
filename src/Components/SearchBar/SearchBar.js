@@ -5,37 +5,52 @@ import axios from "axios";
 
 const options = {
   headers: {
-    'X-RapidAPI-Key': '2b22830679mshc82110794d40bdcp1479ccjsnbb2366421e90',
-    'X-RapidAPI-Host': 'keyword-autosuggest.p.rapidapi.com',
-    "SameSite":"None"
+    "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+    "X-RapidAPI-Host": "keyword-autosuggest.p.rapidapi.com",
   },
 };
 
-const SearchBar = ({ value, setValue, placeholder, suggest, setSuggest, setLabels, setShowTags }) => {
+const SearchBar = ({
+  value,
+  setValue,
+  placeholder,
+  suggest,
+  setSuggest,
+  setLabels,
+  setShowTags,
+  toggle,
+  setToggle,
+}) => {
   const classes = searchBarStyles();
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState([]);
 
   async function getTags() {
     const res = await axios.get(
-      'https://keyword-autosuggest.p.rapidapi.com/autosuggest',
+      "https://keyword-autosuggest.p.rapidapi.com/autosuggest",
       { ...options, params: { q: value } }
     );
 
-    if(res.data){
-      setTags(res.data.result ?? [])
-      setLabels(res.data.result ?? [])
+    if (res.data) {
+      setTags(res.data.result ?? []);
+      setLabels(res.data.result ?? []);
     }
   }
 
-  useEffect(()=>{
-    const delayTimeout = setTimeout(()=>{
-        if(value?.length > 3) getTags()
-    },100)
+  useEffect(() => {
+    const delayTimeout = setTimeout(() => {
+      if (value?.length >= 3) getTags();
+    }, 100);
 
-    return ()=>{
-        clearTimeout(delayTimeout);
-    }
-  },[value])
+    const searchDelayTimeout = setTimeout(() => {
+      setToggle(!toggle);
+      setShowTags(true);
+    }, 500);
+
+    return () => {
+      clearTimeout(delayTimeout);
+      clearTimeout(searchDelayTimeout);
+    };
+  }, [value]);
 
   return (
     <div className={classes.container}>
@@ -47,9 +62,7 @@ const SearchBar = ({ value, setValue, placeholder, suggest, setSuggest, setLabel
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
-          if (
-            e.target.value?.length > 0
-          ) {
+          if (e.target.value?.length > 0) {
             setSuggest(true);
           } else {
             setSuggest(false);
@@ -61,8 +74,8 @@ const SearchBar = ({ value, setValue, placeholder, suggest, setSuggest, setLabel
         onClick={() => {
           setValue("");
           setSuggest(false);
-          setLabels([])
-          setShowTags(false)
+          setLabels([]);
+          setShowTags(false);
         }}
       >
         {value?.length > 0 && "x"}

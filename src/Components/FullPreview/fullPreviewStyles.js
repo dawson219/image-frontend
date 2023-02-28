@@ -54,7 +54,7 @@ export const fullPreviewStyles = createUseStyles({
     },
     imageRel: {
         width: "100%",
-        height: "calc(100% - 5.5rem)",
+        height: "calc(80% - 5.5rem)",
         position: "relative",
     },
     imageTag: {
@@ -69,10 +69,13 @@ export const fullPreviewStyles = createUseStyles({
         alignItems: "center",
         justifyContent: "space-between",
         height: "5rem",
-        borderRadius: "0 0 8px 8px",
         padding: "1rem",
+    },
+    detailsWrapper: {
         border: (dark) => dark ? "none" : "1px solid #E5E5E5",
-        backgroundColor: (dark) => dark ? "rgba(20, 20, 20, 1)" : "white"
+        backgroundColor: (dark) => dark ? "rgba(20, 20, 20, 1)" : "white",
+        borderRadius: "0 0 8px 8px",
+        width: "100%",
     },
     data: {
         display: "flex",
@@ -180,5 +183,19 @@ export const fullPreviewStyles = createUseStyles({
         whiteSpace: "pre",
         padding: "0.5rem 1rem",
         borderRadius: "4px",
-    }
+    },
+    relatedTags: {
+        fontSize: "1.2rem",
+        fontWeight: "600",
+        width: "100%",
+        textAlign: "left",
+        margin: "0.5rem 1.5rem"
+    },
+    wrapper: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "left",
+        flexWrap: "wrap",
+    },
 })

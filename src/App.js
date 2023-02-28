@@ -12,8 +12,9 @@ function App() {
   const [value, setValue] = useState("");
   const [suggest, setSuggest] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [tags, setTags] = useState([])
-  const [showTags, setShowTags] = useState(false)
+  const [tags, setTags] = useState([]);
+  const [showTags, setShowTags] = useState(false);
+
   return (
     <div className="App">
       <div className="mainBody">
@@ -30,21 +31,19 @@ function App() {
           setDark={setDark}
           setTags={setTags}
         />
-        { (
-          <Banner
-            toggle={toggle}
-            setToggle={setToggle}
-            suggest={suggest}
-            setSuggest={setSuggest}
-            value={value}
-            setValue={setValue}
-            tags={tags}
-            dark={dark}
-            setTags={setTags}
-            showTags={showTags}
-            setShowTags={setShowTags}
-          />
-        )}
+        <Banner
+          toggle={toggle}
+          setToggle={setToggle}
+          suggest={suggest}
+          setSuggest={setSuggest}
+          value={value}
+          setValue={setValue}
+          tags={tags}
+          dark={dark}
+          setTags={setTags}
+          showTags={showTags}
+          setShowTags={setShowTags}
+        />
         <Photos
           dark={dark}
           setDark={setDark}
@@ -66,6 +65,10 @@ function App() {
           likes={preview.likes}
           dark={dark}
           setDark={setDark}
+          value={value}
+          setValue={setValue}
+          toggle={toggle}
+          setToggle={setToggle}
         />
       )}
     </div>
